@@ -1,17 +1,37 @@
 ﻿body {
-    color: #ABA6A6;
+    color: white;
+    background-color: #BF0E14;
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #940D0D;
 }
 
-.row {
-    
+h2 {
+    color: #C8C8C8;
 }
 
-.jumbotron {
-    color: black;
-    background-color: #ABA6A6;
+#PageTop {
+    margin-bottom: 30em;   
+}
+
+#j1 {
+    float: left;
+    width: 65%;
+    padding-top: 0.8em;
+    margin-top: .75em;
+    color: white;
+    background-color: #BF0E14;
+}
+
+#blocko {
+    margin-top: 4em;
+    margin-right: 10em;
+    margin-left: 2em;
+    float: right;
+    width: 20%;
+}
+
+#c1 {
+    margin-top: auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -32,4 +52,50 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.jbtn { 
+  color: #FFFFFF; 
+  background-color: #949494; 
+  border-color: #941F1F; 
+} 
+ 
+.jbtn:hover, 
+.jbtn:focus, 
+.jbtn:active, 
+.jbtn.active, 
+.open .dropdown-toggle.jbtn { 
+  color: #FFFFFF; 
+  background-color: #808080; 
+  border-color: #941F1F; 
+} 
+ 
+.jbtn:active, 
+.jbtn.active, 
+.open .dropdown-toggle.jbtn { 
+  background-image: none; 
+} 
+ 
+.jbtn.disabled, 
+.jbtn[disabled], 
+fieldset[disabled] .jbtn, 
+.jbtn.disabled:hover, 
+.jbtn[disabled]:hover, 
+fieldset[disabled] .jbtn:hover, 
+.jbtn.disabled:focus, 
+.jbtn[disabled]:focus, 
+fieldset[disabled] .jbtn:focus, 
+.jbtn.disabled:active, 
+.jbtn[disabled]:active, 
+fieldset[disabled] .jbtn:active, 
+.jbtn.disabled.active, 
+.jbtn[disabled].active, 
+fieldset[disabled] .jbtn.active { 
+  background-color: #949494; 
+  border-color: #941F1F; 
+} 
+ 
+.jbtn .badge { 
+  color: #949494; 
+  background-color: #FFFFFF; 
 }
