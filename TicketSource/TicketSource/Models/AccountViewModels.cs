@@ -79,7 +79,6 @@ namespace TicketSource.Models
         public string Email { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Are you a student?")]
         public Boolean IsStudent { get; set; }
 

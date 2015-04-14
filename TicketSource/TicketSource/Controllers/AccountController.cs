@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -154,10 +155,12 @@ namespace TicketSource.Controllers
                 var user = new ApplicationUser { UserName = model.Email,
                                                  Email = model.Email,
                                                  FirstName = model.FName,
-                                                 LastName = model.LName
+                                                 LastName = model.LName,
+                                                 IsStudent = model.IsStudent
                                                };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
+                Debug.WriteLine("User Created");
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
