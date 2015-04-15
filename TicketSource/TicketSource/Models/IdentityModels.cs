@@ -15,6 +15,13 @@ namespace TicketSource.Models
         public String LastName { get; set; }
         public Boolean IsStudent { get; set; }
 
+        /*
+        public String StreetAddress { get; set; }
+        public String City { get; set; }
+        public String State { get; set; }
+        public String ZipCode { get; set; }
+        */
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
