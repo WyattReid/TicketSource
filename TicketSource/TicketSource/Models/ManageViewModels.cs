@@ -7,6 +7,8 @@ namespace TicketSource.Models
 {
     public class IndexViewModel
     {
+        public int ActiveTix { get; set; }
+
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
@@ -15,7 +17,9 @@ namespace TicketSource.Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get; set; }
         public string IsStudent { get; set; }
+        public string EMail { get; set; }
 
 
         public string StreetAddress { get; set; }

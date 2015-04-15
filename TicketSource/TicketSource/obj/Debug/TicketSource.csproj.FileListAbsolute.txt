@@ -108,3 +108,5 @@ C:\Users\Wyatt\Documents\TicketSource\TicketSource\TicketSource\bin\Microsoft.Ow
 C:\Users\Wyatt\Documents\TicketSource\TicketSource\TicketSource\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Wyatt\Documents\TicketSource\TicketSource\TicketSource\obj\Debug\TicketSource.dll
 C:\Users\Wyatt\Documents\TicketSource\TicketSource\TicketSource\obj\Debug\TicketSource.pdb
+C:\Users\Wyatt\Documents\TicketSource\TicketSource\TicketSource\obj\Debug\TicketSource.Migrations.AddUrl.resources
+C:\Users\Wyatt\Documents\TicketSource\TicketSource\TicketSource\obj\Debug\TicketSource.csproj.GenerateResource.Cache

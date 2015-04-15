@@ -26,5 +26,12 @@ namespace TicketSource.Controllers
 
             return View();
         }
+
+        public ActionResult Fees()
+        {
+            ViewBag.Message = "How it Works";
+
+            return View();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model TicketSource.Models.IndexViewModel
+﻿@using Microsoft.Ajax.Utilities
+@model TicketSource.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
 }
@@ -14,22 +15,40 @@
         <dt>Full Name:</dt>
         <dd>
             [
-            @Model.FirstName
+            @Model.FullName
             ]
         </dd>
 
         <dt>Email Address:</dt>
         <dd>
             [
-            @Model.FirstName
+            @Model.EMail
             ]
         </dd>
 
         <dt>Address:</dt>
         <dd>
             [
-            @Model.FirstName
+
+            @if (!Model.StreetAddress.IsNullOrWhiteSpace())
+            {
+                @Model.StreetAddress
+                @Model.City
+                @Model.State
+                @Model.ZipCode
+                <a>]</a>
+                <br/>
+                <a>[</a>
+                @Html.ActionLink("Edit Address", "EditAddress")
+            }
+            else
+            {
+                @Html.ActionLink("Add Address", "EditAddress")
+
+            }
+
             ]
+
         </dd>
 
         <dt>Password:</dt>
@@ -49,7 +68,10 @@
         <dt>Tickets Listed:</dt>
         <dd>
             [
-            @Model.FirstName
+            @Model.ActiveTix
+            ]
+            [
+            @Html.ActionLink("View Active Tickets", "Browse")
             ]
         </dd>
 

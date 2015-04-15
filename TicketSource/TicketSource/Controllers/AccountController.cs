@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -156,8 +157,26 @@ namespace TicketSource.Controllers
                                                  Email = model.Email,
                                                  FirstName = model.FName,
                                                  LastName = model.LName,
-                                                 IsStudent = model.IsStudent
+                                                 IsStudent = model.IsStudent,
+                                                 State = model.State,                                                 ZipCode = model.Zip
                                                };
+
+                if (!model.StreetAddress.IsNullOrWhiteSpace())
+                {
+                    user.StreetAddress = model.StreetAddress;
+                }
+                if (!model.City.IsNullOrWhiteSpace())
+                {
+                    user.City = model.City;
+                }
+                if (!model.State.IsNullOrWhiteSpace())
+                {
+                    user.State = model.State;
+                }
+                if (!model.Zip.IsNullOrWhiteSpace())
+                {
+                    user.ZipCode = model.Zip;
+                }
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 Debug.WriteLine("User Created");

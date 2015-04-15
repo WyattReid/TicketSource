@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TicketSourceDB">
+  <DataContextMoniker Name="/TicketSourceDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e6dc3058-e221-4376-83ef-422a61bbb4de" absoluteBounds="2, 0.75, 2, 4.6554182942708326">
+      <DataClassMoniker Name="/TicketSourceDBDataContext/AspNetUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1011dcbf-320e-437a-8542-47ba059b698a" absoluteBounds="2.0149999999999997, 1.21, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3ced0cb4-1999-477a-ad51-00fe301269f7" absoluteBounds="8.75, 2.25, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/TicketSourceDBDataContext/Ticket" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6957fefd-ad22-4a84-93b3-21771247b1d5" absoluteBounds="8.765, 2.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00df9631-e5c0-4660-a076-d971bbb0fba9" absoluteBounds="5, 2.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/TicketSourceDBDataContext/UserTicket" />
+      <nestedChildShapes>
+        <elementListCompartment Id="872cdf68-39c1-429c-bd2c-8b919d5bb1d0" absoluteBounds="5.0150000000000006, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.75 : 3.22199625651042); (7 : 3.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TicketSourceDBDataContext/Ticket/Ticket_UserTicket" />
+      <nodes>
+        <classShapeMoniker Id="3ced0cb4-1999-477a-ad51-00fe301269f7" />
+        <classShapeMoniker Id="00df9631-e5c0-4660-a076-d971bbb0fba9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4 : 3.22199625651042); (5 : 3.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TicketSourceDBDataContext/AspNetUser/AspNetUser_UserTicket" />
+      <nodes>
+        <classShapeMoniker Id="e6dc3058-e221-4376-83ef-422a61bbb4de" />
+        <classShapeMoniker Id="00df9631-e5c0-4660-a076-d971bbb0fba9" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -64,16 +64,45 @@ namespace TicketSource.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
+            var context = new TicketSourceDBDataContext();
             
             var model = new IndexViewModel
             {
+                FirstName = context.AspNetUsers.First(i => i.Id == userId).FirstName,
+                LastName = context.AspNetUsers.First(i => i.Id == userId).LastName,
+                EMail = context.AspNetUsers.First(i => i.Id == userId).Email,
+
+                ActiveTix = context.Tickets.Count(i => i.SellerID == userId),
+
+                StreetAddress = context.AspNetUsers.First(i => i.Id == userId).StreetAddress,
+                City = context.AspNetUsers.First(i => i.Id == userId).City,
+                State = context.AspNetUsers.First(i => i.Id == userId).State,
+                ZipCode = context.AspNetUsers.First(i => i.Id == userId).ZipCode,
+
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            model.FullName = model.FirstName + " " + model.LastName;
             return View(model);
+        }
+
+        //
+        // GET: /Manage/Browse
+        public ActionResult EditAddress()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Manage/Browse
+        public ActionResult Browse()
+        {
+            return View();
         }
 
         //
