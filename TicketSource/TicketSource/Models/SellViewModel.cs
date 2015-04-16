@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Linq;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -26,7 +28,17 @@ namespace TicketSource.Models
             [Display(Name = "Price Wanted")]
             public double PriceWanted { get; set; }
 
-            public string SellerID { get; set; }
+            [Required]
+            [Display(Name = "Opponent")]
+            public string Opponent { get; set; }
+
+            [Required]
+            [Display(Name = "Price")]
+            public string SellingPrice { get; set; }
+
+
+
+        public string SellerID { get; set; }
 
             public string Url { get; set; }
         

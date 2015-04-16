@@ -201,6 +201,7 @@
     <Content Include="Content\pictures\opic2.jpg" />
     <Content Include="Content\pictures\pic1.jpg" />
     <Content Include="Content\pictures\pic2.jpg" />
+    <Content Include="Content\pictures\stad.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -268,6 +269,8 @@
     <Content Include="Views\Sell\Index.cshtml" />
     <Content Include="Views\Manage\Browse.cshtml" />
     <Content Include="Views\Manage\EditAddress.cshtml" />
+    <Content Include="Views\Buy\Purchase.cshtml" />
+    <Content Include="Views\Buy\Finalized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

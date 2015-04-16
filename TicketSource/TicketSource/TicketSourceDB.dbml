@@ -32,7 +32,10 @@
       <Column Name="Seat" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
       <Column Name="PriceWanted" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="Section" Type="System.String" CanBeNull="false" />
-      <Column Member="SellerID" Type="System.String" CanBeNull="false" />
+      <Column Name="SellerID" Type="System.String" CanBeNull="false" />
+      <Column Name="Opponent" Type="System.String" CanBeNull="false" />
+      <Column Member="Active" Type="System.Boolean" CanBeNull="false" />
+      <Column Member="SellingPrice" Type="System.Decimal" CanBeNull="false" />
       <Association Name="Ticket_UserTicket" Member="UserTicket" ThisKey="TicketID" OtherKey="TicketID" Type="UserTicket" Cardinality="One" />
     </Type>
   </Table>
@@ -42,6 +45,13 @@
       <Column Name="UserID" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
       <Association Name="Ticket_UserTicket" Member="Ticket" ThisKey="TicketID" OtherKey="TicketID" Type="Ticket" IsForeignKey="true" />
       <Association Name="AspNetUser_UserTicket" Member="AspNetUser" ThisKey="UserID" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Games" Member="Games">
+    <Type Name="Game">
+      <Column Name="Week" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Opponent" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

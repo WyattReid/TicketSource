@@ -8,10 +8,10 @@
         <elementListCompartment Id="1011dcbf-320e-437a-8542-47ba059b698a" absoluteBounds="2.0149999999999997, 1.21, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3ced0cb4-1999-477a-ad51-00fe301269f7" absoluteBounds="8.75, 2.25, 2, 1.9631982421874996">
+    <classShape Id="3ced0cb4-1999-477a-ad51-00fe301269f7" absoluteBounds="8.75, 0.875, 2, 2.5401025390625">
       <DataClassMoniker Name="/TicketSourceDBDataContext/Ticket" />
       <nestedChildShapes>
-        <elementListCompartment Id="6957fefd-ad22-4a84-93b3-21771247b1d5" absoluteBounds="8.765, 2.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6957fefd-ad22-4a84-93b3-21771247b1d5" absoluteBounds="8.765, 1.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="00df9631-e5c0-4660-a076-d971bbb0fba9" absoluteBounds="5, 2.625, 2, 1.1939925130208333">
@@ -20,7 +20,7 @@
         <elementListCompartment Id="872cdf68-39c1-429c-bd2c-8b919d5bb1d0" absoluteBounds="5.0150000000000006, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.75 : 3.22199625651042); (7 : 3.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.75 : 3.02005126953125); (7 : 3.02005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TicketSourceDBDataContext/Ticket/Ticket_UserTicket" />
       <nodes>
         <classShapeMoniker Id="3ced0cb4-1999-477a-ad51-00fe301269f7" />
@@ -34,5 +34,11 @@
         <classShapeMoniker Id="00df9631-e5c0-4660-a076-d971bbb0fba9" />
       </nodes>
     </associationConnector>
+    <classShape Id="85ee589c-188f-4d0c-84a7-f489eb68ee36" absoluteBounds="6.5, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/TicketSourceDBDataContext/Game" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a178fc2d-2f32-45bb-8791-d012e092ed28" absoluteBounds="6.515, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

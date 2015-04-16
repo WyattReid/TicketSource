@@ -15,7 +15,7 @@ namespace TicketSource.Controllers
             var context = new TicketSourceDBDataContext();
             var model = new BuyViewModel
             {
-                AllTickets = context.Tickets.Where(i => i.TicketID > -1)
+                AllTickets = context.Tickets.Where(i => (i.TicketID > -1) && (i.Active == true))
             };
             
             return View(model);
@@ -24,17 +24,41 @@ namespace TicketSource.Controllers
         // GET: Buy/Details/5
         public ActionResult Details(int id)
         {
-
             var context = new TicketSourceDBDataContext();
             var model = new BuyViewModel
             {
                 newTicket = context.Tickets.First(i => i.TicketID == id)
             };
-
             return View(model);
         }
 
-     
-        
+
+        // GET: Buy/Purchase/5
+        public ActionResult Purchase(int id)
+        {
+            var context = new TicketSourceDBDataContext();
+            var model = new BuyViewModel
+            {
+                newTicket = context.Tickets.First(i => i.TicketID == id)
+            };
+            return View(model);
+        }
+
+
+        // GET: Buy/Purchase/5
+        public ActionResult Finalized(int id)
+        {
+            var context = new TicketSourceDBDataContext();
+            var model = new BuyViewModel
+            {
+                newTicket = context.Tickets.First(i => i.TicketID == id)
+            };
+            model.newTicket.Active = false;
+            context.SubmitChanges();
+            return View(model);
+        }
+
+
+
     }
 }

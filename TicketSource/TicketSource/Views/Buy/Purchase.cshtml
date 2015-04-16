@@ -1,0 +1,41 @@
+﻿@model TicketSource.Models.BuyViewModel
+@{
+    ViewBag.Title = "Purchase";
+}
+
+<h2>Purchase</h2>
+
+@using (Html.BeginForm("Index", "Sell", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("Card Number")
+        <div>
+            @Html.TextBox("CardNumber")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Expiration Date")
+        <div>
+            @Html.TextBox("expDate")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("CVV")
+        <div>
+            @Html.TextBox("cvv")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Finalize Purchase", "Finalized", new { id = Model.newTicket.TicketID }, new { @class = "link-button" })
+        </div>
+    </div>
+
+
+
+}

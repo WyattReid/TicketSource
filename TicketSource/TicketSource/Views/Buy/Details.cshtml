@@ -4,7 +4,30 @@
     ViewBag.Title = "Ticket Details";
 }
 
-<h2>Ticket Details</h2>
+<div style="width: 50%; float:left">
+    <h2>Ticket Details</h2>
 
-@Model.newTicket.PriceWanted
+    <h4>Opponent</h4>
+    @Model.newTicket.Opponent
 
+    <h4>Section</h4>
+    @Model.newTicket.Section
+
+    <h4>Row</h4>
+    @Model.newTicket.Row
+
+    <h4>Seat</h4>
+    @Model.newTicket.Seat 
+</div>
+
+
+
+<div style="width: 50%">
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Purchase", "Purchase", new { id = Model.newTicket.TicketID }, new { @class = "link-button" })
+    </div>
+</div>
+
+<div id="stadPic" >
+    <img src="/Content/pictures/stad.gif" alt="Tailgating">
+</div>

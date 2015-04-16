@@ -39,6 +39,9 @@ namespace TicketSource
     partial void InsertUserTicket(UserTicket instance);
     partial void UpdateUserTicket(UserTicket instance);
     partial void DeleteUserTicket(UserTicket instance);
+    partial void InsertGame(Game instance);
+    partial void UpdateGame(Game instance);
+    partial void DeleteGame(Game instance);
     #endregion
 		
 		public TicketSourceDBDataContext() : 
@@ -92,6 +95,14 @@ namespace TicketSource
 			get
 			{
 				return this.GetTable<UserTicket>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Game> Games
+		{
+			get
+			{
+				return this.GetTable<Game>();
 			}
 		}
 	}
@@ -660,6 +671,12 @@ namespace TicketSource
 		
 		private string _SellerID;
 		
+		private string _Opponent;
+		
+		private bool _Active;
+		
+		private decimal _SellingPrice;
+		
 		private EntityRef<UserTicket> _UserTicket;
 		
     #region Extensibility Method Definitions
@@ -678,6 +695,12 @@ namespace TicketSource
     partial void OnSectionChanged();
     partial void OnSellerIDChanging(string value);
     partial void OnSellerIDChanged();
+    partial void OnOpponentChanging(string value);
+    partial void OnOpponentChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    partial void OnSellingPriceChanging(decimal value);
+    partial void OnSellingPriceChanged();
     #endregion
 		
 		public Ticket()
@@ -802,6 +825,66 @@ namespace TicketSource
 					this._SellerID = value;
 					this.SendPropertyChanged("SellerID");
 					this.OnSellerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Opponent", CanBeNull=false)]
+		public string Opponent
+		{
+			get
+			{
+				return this._Opponent;
+			}
+			set
+			{
+				if ((this._Opponent != value))
+				{
+					this.OnOpponentChanging(value);
+					this.SendPropertyChanging();
+					this._Opponent = value;
+					this.SendPropertyChanged("Opponent");
+					this.OnOpponentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SellingPrice")]
+		public decimal SellingPrice
+		{
+			get
+			{
+				return this._SellingPrice;
+			}
+			set
+			{
+				if ((this._SellingPrice != value))
+				{
+					this.OnSellingPriceChanging(value);
+					this.SendPropertyChanging();
+					this._SellingPrice = value;
+					this.SendPropertyChanged("SellingPrice");
+					this.OnSellingPriceChanged();
 				}
 			}
 		}
@@ -999,6 +1082,116 @@ namespace TicketSource
 						this._UserID = default(string);
 					}
 					this.SendPropertyChanged("AspNetUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Games")]
+	public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Week;
+		
+		private string _Opponent;
+		
+		private System.DateTime _Date;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWeekChanging(int value);
+    partial void OnWeekChanged();
+    partial void OnOpponentChanging(string value);
+    partial void OnOpponentChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    #endregion
+		
+		public Game()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Week", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Week
+		{
+			get
+			{
+				return this._Week;
+			}
+			set
+			{
+				if ((this._Week != value))
+				{
+					this.OnWeekChanging(value);
+					this.SendPropertyChanging();
+					this._Week = value;
+					this.SendPropertyChanged("Week");
+					this.OnWeekChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Opponent", DbType="NChar(20) NOT NULL", CanBeNull=false)]
+		public string Opponent
+		{
+			get
+			{
+				return this._Opponent;
+			}
+			set
+			{
+				if ((this._Opponent != value))
+				{
+					this.OnOpponentChanging(value);
+					this.SendPropertyChanging();
+					this._Opponent = value;
+					this.SendPropertyChanged("Opponent");
+					this.OnOpponentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
 				}
 			}
 		}

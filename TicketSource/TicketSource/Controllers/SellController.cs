@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using TicketSource.Models;
 
@@ -25,8 +26,11 @@ namespace TicketSource.Controllers
         [HttpPost]
         public ActionResult Index(SellViewModel thisModel)
         {
-            Random rnd = new Random();
+    
 
+            var context = new TicketSourceDBDataContext();
+
+            Random rnd = new Random();
             var ticketID = rnd.Next(1, 999999999);
 
             //Add logic here to skip ticketID if the value exists
@@ -36,12 +40,15 @@ namespace TicketSource.Controllers
                                       Row = thisModel.TicketRow,
                                       Seat = thisModel.TicketSeat,
                                       SellerID = userId,
-                                      TicketID = ticketID
+                                      TicketID = ticketID,
+                                      Opponent = thisModel.Opponent,
+                                      Active = true
                                      };
-            var context = new TicketSourceDBDataContext();
+
+            ticket.SellingPrice = ticket.PriceWanted + (decimal) 50.00;
             context.Tickets.InsertOnSubmit(ticket);
             context.SubmitChanges();
-            return View();
+            return RedirectToAction("Index","Buy");
         }
      
         }

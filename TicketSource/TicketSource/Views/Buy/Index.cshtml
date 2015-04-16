@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.newTicket.Opponent)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.newTicket.Section)
         </th>
         <th>
@@ -18,7 +21,7 @@
             @Html.DisplayNameFor(model => model.newTicket.Seat)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.newTicket.PriceWanted)
+            @Html.DisplayNameFor(model => model.newTicket.SellingPrice)
         </th>
         <th></th>
     </tr>
@@ -26,6 +29,9 @@
     @foreach (var item in Model.AllTickets)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opponent)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Section)
             </td>
@@ -36,12 +42,16 @@
                 @Html.DisplayFor(modelItem => item.Seat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PriceWanted)
+                @Html.DisplayFor(modelItem => item.SellingPrice)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.TicketID })
+                @Html.ActionLink("Details", "Details", new {id = item.TicketID})
             </td>
         </tr>
-                    }
+    }
 
 </table>
+
+<div id="stadPic">
+    <img src="/Content/pictures/stad.gif" alt="Seat Reference">
+</div>
