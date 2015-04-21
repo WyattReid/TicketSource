@@ -941,7 +941,7 @@ namespace TicketSource
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID")]
 		public string BuyerID
 		{
 			get

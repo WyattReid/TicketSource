@@ -38,28 +38,25 @@ namespace TicketSource.Controllers
         }
 
         
-        [HttpGet]
-        [Authorize]
-        // GET: Buy/Purchase/5
-        public ActionResult Purchase(string id)
-        {
-            return View(id);
-        }
+
         
 
         //this is where the magic happens
-        [HttpPost]
+        [HttpGet]
         [Authorize]
         // GET: Buy/Purchase/5
         public ActionResult Purchase(int id)
         {
+            var userId = User.Identity.GetUserId();
             int rID = id;
             var context = new TicketSourceDBDataContext();
             var newTicket = context.Tickets.FirstOrDefault(i => i.TicketID == rID);
-            newTicket.Active = false;
 
-            Debug.WriteLine(rID);
-            Debug.WriteLine(newTicket);
+            newTicket.Active = false;
+            newTicket.BuyerID = userId;
+
+            Debug.WriteLine("Ticket # " +rID);
+            Debug.WriteLine("Sold to: " +newTicket.BuyerID);
 
             context.SubmitChanges();
 

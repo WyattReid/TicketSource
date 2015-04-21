@@ -38,7 +38,7 @@
       <Column Name="SellingPrice" Type="System.Decimal" CanBeNull="false" />
       <Column Name="Paid" Type="System.Boolean" CanBeNull="false" />
       <Column Name="StudentPrice" Type="System.Decimal" CanBeNull="false" />
-      <Column Member="BuyerID" Type="System.String" CanBeNull="false" />
+      <Column Name="BuyerID" Type="System.String" CanBeNull="true" />
       <Association Name="Ticket_UserTicket" Member="UserTicket" ThisKey="TicketID" OtherKey="TicketID" Type="UserTicket" Cardinality="One" />
     </Type>
   </Table>

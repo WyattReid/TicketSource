@@ -20,7 +20,7 @@
         <elementListCompartment Id="872cdf68-39c1-429c-bd2c-8b919d5bb1d0" absoluteBounds="5.0150000000000006, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.75 : 3.22199625651042); (7 : 3.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.75 : 3.22199625651042); (7 : 3.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TicketSourceDBDataContext/Ticket/Ticket_UserTicket" />
       <nodes>
         <classShapeMoniker Id="3ced0cb4-1999-477a-ad51-00fe301269f7" />

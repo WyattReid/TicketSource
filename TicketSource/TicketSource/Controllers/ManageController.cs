@@ -77,6 +77,7 @@ namespace TicketSource.Controllers
 
                 ActiveTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == true)),
                 SoldTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false)),
+                BoughtTix = context.Tickets.Count(i => (i.BuyerID == userId)),
 
                 Credits = 0,
 
