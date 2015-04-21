@@ -75,6 +75,26 @@
             ]
         </dd>
 
+        <dt>Payout:</dt>
+        <dd>
+            [
+            @Model.Credits
+            ]
+            [
+            @Html.ActionLink("Send me a check", "Payout")
+            ]
+        </dd>
+
+        <dt>Past Orders:</dt>
+        <dd>
+            [
+            @Model.BoughtTix
+            ]
+            [
+            @Html.ActionLink("View Order History", "OrderHistory")
+            ]
+        </dd>
+
 
 
 

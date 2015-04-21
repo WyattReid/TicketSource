@@ -26,7 +26,7 @@ namespace TicketSource.Models
 
             [Required]
             [Display(Name = "Price Wanted")]
-            public double PriceWanted { get; set; }
+            public decimal PriceWanted { get; set; }
 
             [Required]
             [Display(Name = "Opponent")]
@@ -34,11 +34,11 @@ namespace TicketSource.Models
 
             [Required]
             [Display(Name = "Price")]
-            public string SellingPrice { get; set; }
+            public decimal SellingPrice { get; set; }
 
 
 
-        public string SellerID { get; set; }
+            public string SellerID { get; set; }
 
             public string Url { get; set; }
         

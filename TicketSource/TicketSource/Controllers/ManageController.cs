@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -73,7 +75,10 @@ namespace TicketSource.Controllers
                 LastName = context.AspNetUsers.First(i => i.Id == userId).LastName,
                 EMail = context.AspNetUsers.First(i => i.Id == userId).Email,
 
-                ActiveTix = context.Tickets.Count(i => i.SellerID == userId),
+                ActiveTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == true)),
+                SoldTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false)),
+
+                Credits = 0,
 
                 StreetAddress = context.AspNetUsers.First(i => i.Id == userId).StreetAddress,
                 City = context.AspNetUsers.First(i => i.Id == userId).City,
@@ -88,21 +93,120 @@ namespace TicketSource.Controllers
             };
 
             model.FullName = model.FirstName + " " + model.LastName;
+
+            if (model.SoldTix > 0)
+            {
+                model.Credits = context.Tickets.Where(i => (i.SellerID == userId) && (i.Paid == false) && (i.Active == false)).Sum(i => i.PriceWanted);
+            }
+
             return View(model);
         }
 
         //
-        // GET: /Manage/Browse
+        // GET: /Manage/Payout
+        [Authorize]
+        public ActionResult Payout()
+        {
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+
+            var model = new IndexViewModel
+            {
+                FirstName = context.AspNetUsers.First(i => i.Id == userId).FirstName,
+                LastName = context.AspNetUsers.First(i => i.Id == userId).LastName,
+                EMail = context.AspNetUsers.First(i => i.Id == userId).Email,
+
+                ActiveTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == true)),
+                SoldTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false)),
+
+                Credits = 0,
+
+                StreetAddress = context.AspNetUsers.First(i => i.Id == userId).StreetAddress,
+                City = context.AspNetUsers.First(i => i.Id == userId).City,
+                State = context.AspNetUsers.First(i => i.Id == userId).State,
+                ZipCode = context.AspNetUsers.First(i => i.Id == userId).ZipCode,
+
+            };
+
+            if (model.SoldTix > 0)
+            {
+                String x = context.Tickets.Where(i => (i.SellerID == userId) && (i.Paid == false) && (i.Active == false)).Sum(i => i.PriceWanted).ToString();
+                if (!x.IsNullOrWhiteSpace())
+                {
+                    model.Credits = Convert.ToDecimal(x);
+                }
+            }
+
+            return View(model);
+        }
+
+        //
+        // GET: /Manage/EditAddress
+        [Authorize]
+        [HttpGet]
         public ActionResult EditAddress()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+
+            var model = new IndexViewModel
+            {
+                StreetAddress = context.AspNetUsers.First(i => i.Id == userId).StreetAddress,
+                City = context.AspNetUsers.First(i => i.Id == userId).City,
+                State = context.AspNetUsers.First(i => i.Id == userId).State,
+                ZipCode = context.AspNetUsers.First(i => i.Id == userId).ZipCode,
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditAddress(IndexViewModel thisModel)
+        {
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+
+            var activeUser = context.AspNetUsers.FirstOrDefault(i => i.Id == userId);
+
+            activeUser.StreetAddress = thisModel.StreetAddress;
+            activeUser.City = thisModel.City;
+            activeUser.State = thisModel.State;
+            activeUser.ZipCode = thisModel.ZipCode;
+
+            context.SubmitChanges();
+
+            return RedirectToAction("Index", "Manage");
         }
 
         //
         // GET: /Manage/Browse
+        [Authorize]
         public ActionResult Browse()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+            var model = new BuyViewModel
+            {
+                AllTickets = context.Tickets.Where(i => (i.TicketID > -1) && (i.Active == true) && (i.SellerID == userId))
+            };
+
+            return View(model);
+        }
+
+
+        //
+        // GET: /Manage/OrderHistory
+        [Authorize]
+        public ActionResult OrderHistory()
+        {
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+            var model = new BuyViewModel
+            {
+                AllTickets = context.Tickets.Where(i => (i.TicketID > -1) && (i.Active == true) && (i.SellerID == userId))
+            };
+
+            return View(model);
         }
 
         //
@@ -128,6 +232,22 @@ namespace TicketSource.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
+
+        [Authorize]
+        public ActionResult UnlistTicket(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+
+            var ticket = context.Tickets.FirstOrDefault(i => i.TicketID == id);
+            ticket.Active = false;
+            context.SubmitChanges();
+
+
+            return RedirectToAction("Browse", "Manage");
+
+        }
+
 
         //
         // GET: /Manage/AddPhoneNumber

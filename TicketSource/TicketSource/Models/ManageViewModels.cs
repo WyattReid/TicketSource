@@ -8,6 +8,10 @@ namespace TicketSource.Models
     public class IndexViewModel
     {
         public int ActiveTix { get; set; }
+        public int SoldTix { get; set; }
+        public int BoughtTix { get; set; }
+
+        public decimal Credits { get; set; }
 
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }

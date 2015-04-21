@@ -677,6 +677,12 @@ namespace TicketSource
 		
 		private decimal _SellingPrice;
 		
+		private bool _Paid;
+		
+		private decimal _StudentPrice;
+		
+		private string _BuyerID;
+		
 		private EntityRef<UserTicket> _UserTicket;
 		
     #region Extensibility Method Definitions
@@ -701,6 +707,12 @@ namespace TicketSource
     partial void OnActiveChanged();
     partial void OnSellingPriceChanging(decimal value);
     partial void OnSellingPriceChanged();
+    partial void OnPaidChanging(bool value);
+    partial void OnPaidChanged();
+    partial void OnStudentPriceChanging(decimal value);
+    partial void OnStudentPriceChanged();
+    partial void OnBuyerIDChanging(string value);
+    partial void OnBuyerIDChanged();
     #endregion
 		
 		public Ticket()
@@ -885,6 +897,66 @@ namespace TicketSource
 					this._SellingPrice = value;
 					this.SendPropertyChanged("SellingPrice");
 					this.OnSellingPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paid")]
+		public bool Paid
+		{
+			get
+			{
+				return this._Paid;
+			}
+			set
+			{
+				if ((this._Paid != value))
+				{
+					this.OnPaidChanging(value);
+					this.SendPropertyChanging();
+					this._Paid = value;
+					this.SendPropertyChanged("Paid");
+					this.OnPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentPrice")]
+		public decimal StudentPrice
+		{
+			get
+			{
+				return this._StudentPrice;
+			}
+			set
+			{
+				if ((this._StudentPrice != value))
+				{
+					this.OnStudentPriceChanging(value);
+					this.SendPropertyChanging();
+					this._StudentPrice = value;
+					this.SendPropertyChanged("StudentPrice");
+					this.OnStudentPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID", CanBeNull=false)]
+		public string BuyerID
+		{
+			get
+			{
+				return this._BuyerID;
+			}
+			set
+			{
+				if ((this._BuyerID != value))
+				{
+					this.OnBuyerIDChanging(value);
+					this.SendPropertyChanging();
+					this._BuyerID = value;
+					this.SendPropertyChanged("BuyerID");
+					this.OnBuyerIDChanged();
 				}
 			}
 		}

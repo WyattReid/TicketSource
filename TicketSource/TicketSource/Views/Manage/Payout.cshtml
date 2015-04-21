@@ -1,0 +1,19 @@
+﻿@model TicketSource.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Payout";
+}
+
+<h2>Payout.</h2>
+
+<p>This is the address that we have on record for you: </p>
+
+<p>
+    @Model.StreetAddress
+</p>
+
+<p>This is the dollar amount of credits you have sold: </p>
+
+<p>
+    @Model.Credits
+</p>

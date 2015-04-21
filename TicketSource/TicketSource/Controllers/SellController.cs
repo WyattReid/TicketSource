@@ -35,17 +35,20 @@ namespace TicketSource.Controllers
 
             //Add logic here to skip ticketID if the value exists
             var userId = User.Identity.GetUserId();
-            var ticket = new Ticket { PriceWanted = (decimal) thisModel.PriceWanted,
+            var ticket = new Ticket { PriceWanted = thisModel.PriceWanted,
                                       Section = thisModel.TicketSection,
                                       Row = thisModel.TicketRow,
                                       Seat = thisModel.TicketSeat,
                                       SellerID = userId,
                                       TicketID = ticketID,
                                       Opponent = thisModel.Opponent,
-                                      Active = true
+                                      Active = true,
+                                      Paid = false
                                      };
 
             ticket.SellingPrice = ticket.PriceWanted + (decimal) 50.00;
+            ticket.StudentPrice = ticket.PriceWanted + (decimal) 25.00;
+
             context.Tickets.InsertOnSubmit(ticket);
             context.SubmitChanges();
             return RedirectToAction("Index","Buy");

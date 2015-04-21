@@ -271,6 +271,9 @@
     <Content Include="Views\Manage\EditAddress.cshtml" />
     <Content Include="Views\Buy\Purchase.cshtml" />
     <Content Include="Views\Buy\Finalized.cshtml" />
+    <Content Include="Views\Manage\Payout.cshtml" />
+    <Content Include="Views\Manage\UnlistTicket.cshtml" />
+    <Content Include="Views\Manage\OrderHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

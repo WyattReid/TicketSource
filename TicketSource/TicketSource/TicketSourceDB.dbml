@@ -34,8 +34,11 @@
       <Column Name="Section" Type="System.String" CanBeNull="false" />
       <Column Name="SellerID" Type="System.String" CanBeNull="false" />
       <Column Name="Opponent" Type="System.String" CanBeNull="false" />
-      <Column Member="Active" Type="System.Boolean" CanBeNull="false" />
-      <Column Member="SellingPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="SellingPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="Paid" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="StudentPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Member="BuyerID" Type="System.String" CanBeNull="false" />
       <Association Name="Ticket_UserTicket" Member="UserTicket" ThisKey="TicketID" OtherKey="TicketID" Type="UserTicket" Cardinality="One" />
     </Type>
   </Table>

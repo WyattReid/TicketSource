@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.newTicket.SellingPrice)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.newTicket.StudentPrice)
+        </th>
         <th></th>
     </tr>
 
@@ -43,6 +46,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SellingPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentPrice)
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new {id = item.TicketID})
