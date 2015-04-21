@@ -4,21 +4,50 @@
     ViewBag.Title = "Ticket Details";
 }
 
-<div style="width: 50%; float:left">
-    <h2>Ticket Details</h2>
+<div style="width: 50%; float: left">
+	<h2>Ticket Details</h2>
 
-    <h4>Opponent</h4>
-    @Model.newTicket.Opponent
+	<h4>Opponent</h4>
+	@Model.newTicket.Opponent
 
-    <h4>Section</h4>
-    @Model.newTicket.Section
+	<h4>Section</h4>
+	@Model.newTicket.Section
 
-    <h4>Row</h4>
-    @Model.newTicket.Row
+	<h4>Row</h4>
+	@Model.newTicket.Row
 
-    <h4>Seat</h4>
-    @Model.newTicket.Seat 
+	<h4>Seat</h4>
+	@Model.newTicket.Seat
 </div>
+
+
+
+<div id="cardContainer" style="float: left; margin-top: 3em">
+	@using (Html.BeginForm("Purchase", "Buy", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("Card Number")
+        <div>
+            @Html.TextBox("CardNumber")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Expiration Date")
+        <div>
+            @Html.TextBox("expDate")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("CVV")
+        <div>
+            @Html.TextBox("cvv")
+        </div>
+    </div>
+}
 
 
 
@@ -27,7 +56,9 @@
         @Html.ActionLink("Purchase", "Purchase", new { id = Model.newTicket.TicketID }, new { @class = "link-button" })
     </div>
 </div>
+</div>
 
-<div id="stadPic" >
+
+<div id="stadPic" style="margin-top: 2em" >
     <img src="/Content/pictures/stad.gif" alt="Tailgating">
 </div>
