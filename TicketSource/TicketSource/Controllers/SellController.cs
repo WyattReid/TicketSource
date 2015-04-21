@@ -26,32 +26,40 @@ namespace TicketSource.Controllers
         [HttpPost]
         public ActionResult Index(SellViewModel thisModel)
         {
-    
 
-            var context = new TicketSourceDBDataContext();
+			if (ModelState.IsValid)
+			{
+				var context = new TicketSourceDBDataContext();
 
-            Random rnd = new Random();
-            var ticketID = rnd.Next(1, 999999999);
+				Random rnd = new Random();
+				var ticketID = rnd.Next(1, 999999999);
 
-            //Add logic here to skip ticketID if the value exists
-            var userId = User.Identity.GetUserId();
-            var ticket = new Ticket { PriceWanted = thisModel.PriceWanted,
-                                      Section = thisModel.TicketSection,
-                                      Row = thisModel.TicketRow,
-                                      Seat = thisModel.TicketSeat,
-                                      SellerID = userId,
-                                      TicketID = ticketID,
-                                      Opponent = thisModel.Opponent,
-                                      Active = true,
-                                      Paid = false
-                                     };
+				//Add logic here to skip ticketID if the value exists
+				var userId = User.Identity.GetUserId();
+				var ticket = new Ticket
+				{
+					PriceWanted = thisModel.PriceWanted,
+					Section = thisModel.TicketSection,
+					Row = thisModel.TicketRow,
+					Seat = thisModel.TicketSeat,
+					SellerID = userId,
+					TicketID = ticketID,
+					Opponent = thisModel.Opponent,
+					Active = true,
+					Paid = false
+				};
 
-            ticket.SellingPrice = ticket.PriceWanted + (decimal) 50.00;
-            ticket.StudentPrice = ticket.PriceWanted + (decimal) 25.00;
+				ticket.SellingPrice = ticket.PriceWanted + (decimal)50.00;
+				ticket.StudentPrice = ticket.PriceWanted + (decimal)25.00;
 
-            context.Tickets.InsertOnSubmit(ticket);
-            context.SubmitChanges();
-            return RedirectToAction("Index","Buy");
+				context.Tickets.InsertOnSubmit(ticket);
+				context.SubmitChanges();
+				return RedirectToAction("Index", "Buy");
+			}
+			return View();
+
+
+			
         }
      
         }
