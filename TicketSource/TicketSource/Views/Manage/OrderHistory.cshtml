@@ -1,7 +1,52 @@
-﻿
+﻿@model TicketSource.Models.BuyViewModel
+
 @{
     ViewBag.Title = "OrderHistory";
 }
 
 <h2>OrderHistory</h2>
 
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.newTicket.Opponent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.newTicket.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.newTicket.Row)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.newTicket.Seat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.newTicket.PriceWanted)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.AllTickets)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opponent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Row)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceWanted)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -12,8 +12,12 @@
     @Model.StreetAddress
 </p>
 
-<p>This is the dollar amount of credits you have sold: </p>
+<p>This is the dollar amount of credits you have sold that haven't been paid to you: </p>
 
 <p>
     @Model.Credits
 </p>
+
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("Send me a check", "SendCheck", null , new { @class = "link-button" })
+</div>

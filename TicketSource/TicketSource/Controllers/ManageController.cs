@@ -78,6 +78,7 @@ namespace TicketSource.Controllers
                 ActiveTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == true)),
                 SoldTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false)),
                 BoughtTix = context.Tickets.Count(i => (i.BuyerID == userId)),
+                UnpaidTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false) && (i.Paid == false)),
 
                 Credits = 0,
 
@@ -95,7 +96,7 @@ namespace TicketSource.Controllers
 
             model.FullName = model.FirstName + " " + model.LastName;
 
-            if (model.SoldTix > 0)
+            if (model.UnpaidTix > 0)
             {
                 model.Credits = context.Tickets.Where(i => (i.SellerID == userId) && (i.Paid == false) && (i.Active == false)).Sum(i => i.PriceWanted);
             }
@@ -119,6 +120,7 @@ namespace TicketSource.Controllers
 
                 ActiveTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == true)),
                 SoldTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false)),
+                UnpaidTix = context.Tickets.Count(i => (i.SellerID == userId) && (i.Active == false) && (i.Paid == false)),
 
                 Credits = 0,
 
@@ -129,7 +131,7 @@ namespace TicketSource.Controllers
 
             };
 
-            if (model.SoldTix > 0)
+            if (model.UnpaidTix > 0)
             {
                 String x = context.Tickets.Where(i => (i.SellerID == userId) && (i.Paid == false) && (i.Active == false)).Sum(i => i.PriceWanted).ToString();
                 if (!x.IsNullOrWhiteSpace())
@@ -204,8 +206,29 @@ namespace TicketSource.Controllers
             var context = new TicketSourceDBDataContext();
             var model = new BuyViewModel
             {
-                AllTickets = context.Tickets.Where(i => (i.TicketID > -1) && (i.Active == true) && (i.SellerID == userId))
+                AllTickets = context.Tickets.Where(i => (i.TicketID > -1) && (i.Active == false) && (i.BuyerID == userId))
             };
+
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult SendCheck()
+        {
+            var userId = User.Identity.GetUserId();
+            var context = new TicketSourceDBDataContext();
+            var model = new BuyViewModel
+            {
+                AllTickets = context.Tickets.Where(i => (i.TicketID > -1) && (i.Active == false) && (i.SellerID == userId) && (i.Paid == false))
+            };
+
+
+            foreach (Ticket tik in model.AllTickets)
+            {
+                tik.Paid = true;
+            }
+
+            context.SubmitChanges();
 
             return View(model);
         }

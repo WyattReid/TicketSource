@@ -70,6 +70,7 @@
             [
             @Model.ActiveTix
             ]
+            <br />
             [
             @Html.ActionLink("View Active Tickets", "Browse")
             ]
@@ -80,9 +81,14 @@
             [
             @Model.Credits
             ]
-            [
-            @Html.ActionLink("Send me a check", "Payout")
-            ]
+            @if (Model.UnpaidTix > 0)
+            {
+                <br/>
+                <a>[</a>
+                @Html.ActionLink("Send me a check", "Payout")
+                <a>]</a>
+            }
+
         </dd>
 
         <dt>Past Orders:</dt>
@@ -90,6 +96,7 @@
             [
             @Model.BoughtTix
             ]
+            <br />
             [
             @Html.ActionLink("View Order History", "OrderHistory")
             ]

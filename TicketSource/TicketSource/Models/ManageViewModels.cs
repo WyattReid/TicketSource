@@ -10,6 +10,7 @@ namespace TicketSource.Models
         public int ActiveTix { get; set; }
         public int SoldTix { get; set; }
         public int BoughtTix { get; set; }
+        public int UnpaidTix { get; set; }
 
         public decimal Credits { get; set; }
 
